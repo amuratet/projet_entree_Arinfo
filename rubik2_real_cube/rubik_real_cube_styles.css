@@ -1,0 +1,144 @@
+@font-face {
+    font-family: "aguafina regular";
+    src: url("../fonts/AguafinaScript-Regular.ttf") format("opentype");
+}
+@font-face {
+    font-family: "ubuntu title";
+    /* src: url("../fonts/ubuntu-title.ttf") format("opentype"); */
+    src: url("../fonts/ubuntu-title-fr-1.1.ttf") format("opentype");
+}
+@font-face {
+    font-family: "ubuntu light";
+    src: url("../fonts/Ubuntu-L.ttf") format("opentype");
+}
+@font-face {
+    font-family: "ubuntu regular";
+    src: url("../fonts/Ubuntu-R.ttf") format("opentype");
+}
+body, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* box-sizing: content-box; */
+}
+body {
+    background-color: #000000;
+    font-family: "ubuntu regular", sans-serif, serif;
+}
+h1 {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font: small-caps 3em "ubuntu title", sans-serif, serif;
+    text-align: center;
+}
+h1::first-letter {
+    font: 1.5em "aguafina regular", serif;
+    margin-right: .1em;
+    text-shadow: 4px 4px #1b3552;
+}
+h2 {
+    font: 1.5em "ubuntu light", sans-serif, serif;
+    letter-spacing: 2px;
+    text-indent: 20%;
+    margin: 0 0 1em 0;
+    padding: 0;
+    animation: letterSpacingH2 ease-in-out 10s infinite;
+}
+div#laScene {
+    border-radius: 10px;
+    width: 700px;
+    height: 700px;
+    padding: 150px;
+    margin: 0 auto;
+    perspective: 2000px;
+    border: 2px solid #941a1a;
+    background-color: #111;
+    overflow: hidden;
+}
+div#leCube {
+    border-radius: 10px;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-400px);
+    transition: 1s;
+}
+div#leCube>div {
+    transition: 1s;
+    border-radius: 10px;
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    padding: 6px;
+    background-color: rgba(0, 0, 0, .1);
+}
+div#laScene:hover div#leCube {
+    transition: 1s;
+    transform: rotateX(-18deg) rotateY(-18deg);
+}
+div#laScene:hover div#leCube>div {
+    transition: 3s;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 1);
+}
+div#laScene:hover div#face_arriere>div {
+    transition: 2s;
+    background-color: #000;
+}
+div#leCube>div>div {
+    display: inline-block;
+    width: 94px;
+    height: 94px;
+    border-radius: 10px;
+}
+div#face_avant {
+    transition: 1s;
+    transform: rotateY(0deg) translateZ(200px);
+    background-color: rgba(0, 0, 0, 1);
+    opacity: .5;
+}
+div#face_avant>div {
+    background-color: #bdbdbd;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+}
+div#face_avant>div:nth-child(11) {
+    background-color: #666;
+    content: 'hello';
+}
+div#face_arriere {
+    transform: rotateY(180deg) translateZ(200px);
+}
+div#face_arriere>div {
+    transition: 1s;
+    background-color: #dfd10e;
+}
+
+div#face_gauche {
+    transform: rotateY(-90deg) translateZ(200px);
+}
+div#face_gauche>div {
+    background-color: #8f0000;
+}
+
+div#face_droite {
+    transform: rotateY(90deg) translateZ(200px);
+}
+div#face_droite>div {
+    background-color: #c73d06;
+}
+
+div#face_haut {
+    transform: rotateX(90deg) translateZ(200px);
+}
+div#face_haut>div {
+    background-color: #1111a5;
+}
+
+div#face_bas {
+    transform: rotateX(-90deg) translateZ(200px);
+}
+div#face_bas>div {
+    background-color: #1daa18;
+}

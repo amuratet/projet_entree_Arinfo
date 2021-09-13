@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rubik's cube une face</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <!-- <script type="text/javascript" src="rubik_js.js"></script> -->
+</head>
+<body>
+
+    <nav id="return_home">
+        <a href="../accueil.html">Accueil</a>
+    </nav>
+
+    <h1>Rubik's (pas un vrai) cube 1 face</h1>
+    <h2>Composez une face en glissant la souris</h2>
+
+    <div id="cadreCube">
+    <div id="faceA_transform">
+        <div id="upToRightFace">
+            <div class="faceLine">
+                <div style="height: 2.3em;"><p class="pClassSquare"></p></div>
+                <div style="height: 2.3em;"><p class="pClassSquare"></p></div>
+                <div style="height: 2.3em; width: 7.8em;"><p class="pClassSquare"></p></div>
+            </div>
+            <div class="faceLine">
+                <div style="height: 2.7em;"><p class="pClassSquare"></p></div>
+                <div style="height: 2.7em;"><p class="pClassSquare"></p></div>
+                <div style="height: 2.7em; width: 7.8em;"><p class="pClassSquare"></p></div>
+            </div>
+            <div class="faceLine">
+                <div><p class="pClassSquare"></p></div>
+                <div><p class="pClassSquare"></p></div>
+                <div style="width: 7.8em;"><p class="pClassSquare"></p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="faceC_main_faceD_transform">
+        <div id="frontFace">
+            <div class="faceLine">
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+            </div>
+            <div class="faceLine">
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+            </div>
+            <div class="faceLine">
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+                <div><p class="pClassSquare pClassSquareFront"></p></div>
+            </div>
+        </div>
+        <div id="rightToUpFace">
+            <div class="faceLine">
+                <div style="height: 7.9em; margin-top: .1em; width: 2.8em; margin-left: .2em;"><p class="pClassSquare"></p></div>
+                <div style="width: 2.7em; height: 7.9em; margin-top: .1em;"><p class="pClassSquare"></p></div>
+                <div style="width: 2.3em; height: 7.9em; margin-top: .1em;"><p class="pClassSquare"></p></div>
+            </div>
+            <div class="faceLine">
+                <div style="width: 2.8em; margin-left: .2em;"><p class="pClassSquare"></p></div>
+                <div style="width: 2.7em;"><p class="pClassSquare"></p></div>
+                <div style="width: 2.3em;"><p class="pClassSquare"></p></div>
+            </div>
+            <div class="faceLine">
+                <div style="width: 2.8em; margin-left: .2em;"><p class="pClassSquare"></p></div>
+                <div style="width: 2.7em;"><p class="pClassSquare"></p></div>
+                <div style="width: 2.3em;"><p class="pClassSquare"></p></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <p style="font-size: .5em; text-align: right; padding: 2em;">_____/ petit<span style="font-size: 1.2em;">©</span>hapeau \_____</p>
+
+    <script type="text/javascript">
+
+    var squaresPerFace = 9; // À changer si on change le nombre de carrés par faces
+    var colorIndex = 0;
+    var colorsArray = ['#ccff00', '#cc0000', '#00eeff', '#007700', '#4400cc', '#ff7700', '#ffffff'];
+    var nbOfColors = colorsArray.length;
+
+    var userMouseHover = document.getElementsByClassName('pClassSquare');
+
+        for (let i = squaresPerFace; i < (squaresPerFace*2); i++) {
+            userMouseHover[i].addEventListener('mouseover', function() {
+                userMouseHover[i].style.backgroundColor = colorChange(i);
+                userMouseHover[i-squaresPerFace].style.backgroundColor = colorChange(i);
+                userMouseHover[i+squaresPerFace].style.backgroundColor = colorChange(i);
+                checkResult();
+            });
+        }
+
+        function colorChange(i)
+        {
+            /*
+            Change la couleur de l'élément survolé et incrémente l'index du tableau des couleurs
+            */
+            var color = colorsArray[colorIndex];
+            colorIndex++;
+            if (colorIndex >= nbOfColors) {
+                colorIndex = 0;
+            }
+            return color;
+        }
+
+        function checkResult()
+        {
+            /*
+            Vérifie si la face est complète (tous les carrés de même couleur)
+            */
+            for (i = 0 ; i < squaresPerFace ; i++) {
+                var color1 = userMouseHover[0].style.backgroundColor;
+                var color2 = userMouseHover[i].style.backgroundColor;
+                if (color1 !== color2) {
+                    return;
+                }
+            }
+            alert('----------------------------\n\tBravo !!!\n----------------------------');
+        }
+
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Animation mosaïque de fleurs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="../styles.css" />
+    <script src="not_robot_script.js"></script>
+</head>
+
+<body>
+
+    <nav id="return_home">
+        <a href="../accueil.html">Accueil</a>
+    </nav>
+    
+    <h1>Si vous n'êtes pas un robot...</h1>
+    <h2 id="displayTestState"></h2>
+
+    <div class="bouquet">
+        <div id="bouquetPicture1" class="bouquetPictures">
+            <p class="cliquez">Cliquez</p>
+                <img src="../images/donut.png" alt="image absente" />
+        </div>
+        <div id="bouquetPicture2" class="bouquetPictures">
+            <p class="cliquez">Cliquez</p>
+            <img src="../images/flower.png" alt="image absente" />
+        </div>
+    </div>
+    <div class="bouquet">
+        <div id="bouquetPicture3" class="bouquetPictures">
+            <p class="cliquez">Cliquez</p>
+                <img src="../images/sushi.png" alt="image absente" />
+        </div>
+        <div id="bouquetPicture4" class="bouquetPictures">
+            <p class="cliquez">Cliquez</p>
+            <img src="../images/tea.png" alt="image absente" />
+        </div>
+    </div>
+    <div id="validateTest">
+        <button id="checkTestButton" type="submit">Valider</button>
+    </div>
+    <p style="font-size: .5em; text-align: right; padding: 2em;">_____/ petit<span style="font-size: 1.2em;">©</span>hapeau \_____</p>
+
+
+    <script type="text/javascript">
+
+        var display_h2 = document.getElementById('displayTestState');
+        display_h2.innerHTML = displayNewTestState();
+
+        var testImage1 = document.getElementById('bouquetPicture1');
+        testImage1.addEventListener('click', bouquet1);
+
+        var testImage2 = document.getElementById('bouquetPicture2');
+        testImage2.addEventListener('click', bouquet2);
+
+        var testImage3 = document.getElementById('bouquetPicture3');
+        testImage3.addEventListener('click', bouquet3);
+
+        var testImage4 = document.getElementById('bouquetPicture4');
+        testImage4.addEventListener('click', bouquet4);
+
+        function bouquet1() {
+            var posInArray = 0;
+            this.innerHTML = imageSwitch(posInArray);
+            // console.log('flower : ' + flowerBouquet);
+        };
+
+        function bouquet2() {
+            var posInArray = 1;
+            this.innerHTML = imageSwitch(posInArray);
+            // console.log('flower : ' + flowerBouquet);
+        };
+        
+        function bouquet3() {
+            var posInArray = 2;
+            this.innerHTML = imageSwitch(posInArray);
+            // console.log('flower : ' + flowerBouquet);
+        };
+        
+        function bouquet4() {
+            var posInArray = 3;
+            this.innerHTML = imageSwitch(posInArray);
+            // console.log('flower : ' + flowerBouquet);
+        };
+        
+        
+        var validateTest = document.getElementById('checkTestButton');
+        validateTest.addEventListener('click', displayTestCheckResult);
+
+        function displayTestCheckResult() {
+
+            var arrayTest = whichArray();
+
+            // console.log('array de test : ' + arrayTest);
+
+            if (arrayTest[0] && arrayTest[1] && arrayTest[2] && arrayTest[3]) {
+                if (testNumber === 4) {
+                    alert('----------------------------------------------------------\nDe toute évidence vous êtes humain :)\n----------------------------------------------------------');
+                }
+                else if (testNumber >0 && testNumber <4) {
+                alert('Vous avez réussi !\nTest n°' + (testNumber+1) +'/4...');
+                }
+                testNumber++;
+                if (testNumber > 4) {
+                    testNumber = 1;
+                }
+                display_h2.innerHTML = displayNewTestState();
+            }
+            else {
+                alert('Désolé, vous ne semblez pas complètement humain...\nOn retente ?');
+            }
+        };
+
+        function displayNewTestState() {
+            switch (testNumber) {
+                case 1: return 'Composez une salade de fruits';
+                case 2: return 'Vous êtes embauché, arrosez ça !';
+                case 3: return 'Pour vous déplacer, vous préférez quoi ?';
+                case 4: return 'C\'est l\'anniversaire de madame, alors...';
+                default:
+                    alert('erreur dans la fonction "displayNewTestState()"');
+            }
+        }
+        
+    </script>
+    
+
+    
+    
+</body>
+
+</html>

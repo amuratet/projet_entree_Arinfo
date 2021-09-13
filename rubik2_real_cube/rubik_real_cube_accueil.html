@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exo cube 1</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="rubik_real_cube_styles.css">
+    <!-- <script src="rubik_real_cube_js.js"></script> -->
+</head>
+
+<body>
+    <nav id="return_home">
+        <a href="../accueil.html">Accueil</a>
+    </nav>
+
+    <h1>Rubik's (vrai) cube une face</h1>
+    <h2>Composez trois faces en glissant la souris</h2>
+
+    <div id="laScene">
+        <div id="leCube">
+            <div id="face_avant">
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+                <div class="carresFaceAvant"></div>
+            </div>
+            <div id="face_arriere">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div id="face_gauche">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div id="face_droite">
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+                <div class="carresFaceDroite"></div>
+            </div>
+            <div id="face_haut">
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+                <div class="carresFaceHaut"></div>
+            </div>
+            <div id="face_bas">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <p style="font-size: .4em; text-align: right; padding: 2em;">_____/ petit<span style="font-size: 1.2em;">©</span>hapeau \_____</p>
+
+    <script type="text/javascript">
+
+        var carresParFace = 16;
+        var indexCouleur = 0;
+        var tableauCouleurs = ['#ccee00', '#ee000f', '#000fee', '#05ee05', '#ff5500', '#ffffff', '#aa11ff', '#0077ee', '#115500', '#ccee00', '#000fee', '#ee000f', '#05ee05', '#ffffff', '#ff5500', '#aa11ff', '#0077ee', '#115500'];
+        var nbrDeCouleurs = tableauCouleurs.length;
+
+        var carresSurvol = document.getElementsByClassName('carresFaceAvant');
+        var carresFaceHaut = document.getElementsByClassName('carresFaceHaut');
+        var carresFaceDroite = document.getElementsByClassName('carresFaceDroite');
+
+        for (let i = 0 ; i < carresParFace ; i++)
+        {
+            carresSurvol[i].addEventListener('mouseover', function()
+            {
+                carresSurvol[i].style.backgroundColor = changeCouleur(i);
+                carresFaceHaut[i].style.backgroundColor = changeCouleur(i);
+                carresFaceDroite[i].style.backgroundColor = changeCouleur(i);
+
+                verificationCouleurs();
+            });
+        }
+
+        function changeCouleur(i)
+        {
+            var couleur = tableauCouleurs[indexCouleur];
+            indexCouleur++;
+            if (indexCouleur >= nbrDeCouleurs) {
+                indexCouleur = 0;
+            }
+            return couleur;
+        }
+
+        function verificationCouleurs()
+        {
+            for (i = 0 ; i < carresParFace ; i++)
+            {
+                var couleur1 = carresFaceDroite[i].style.backgroundColor;
+                var couleur2 = carresFaceDroite[0].style.backgroundColor;
+                if (couleur1 !== couleur2) {
+                    return;
+                }
+            }
+            alert('-----------------------\n   G A G N É !!!\n-----------------------');
+        }
+
+    </script>
+    
+</body>
+</html>
